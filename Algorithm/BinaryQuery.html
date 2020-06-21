@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="Stylesheet" type="text/css" href="/MyWiki/static/css/style.css">
+    <link rel="Stylesheet" type="text/css" href="/MyWiki/static/css/tango.css">
+    <link rel="shortcut icon" href="/MyWiki/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/MyWiki/favicon.ico" type="image/x-icon">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed">
+    <title>BinaryQuery - Zhang-guomin's Wiki</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+
+  <body>
+    <div id="container">
+      
+<div id="header">
+  <div class="post-nav"><a href="/MyWiki/">Home</a>&nbsp;&#187;&nbsp;<a href="/MyWiki/#Algorithm">Algorithm</a>&nbsp;&#187;&nbsp;BinaryQuery
+    <span class="updated">Page Updated&nbsp;
+      2020-06-21 20:00
+    </span></div>
+</div>
+<div class="clearfix"></div>
+
+<div class="page_title">BinaryQuery</div>
+
+  <h1 id="_1">二分查找</h1>
+<div class="hlcode"><pre><span class="n">array</span> <span class="err">数组里面查找</span> <span class="n">target</span> <span class="p">(</span><span class="n">array</span><span class="err">必须是有序</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">right</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="n">array</span><span class="p">[</span><span class="n">mid</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+   <span class="k">else</span>
+       <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>    
+<span class="p">}</span>
+<span class="n">retrun</span> <span class="nb">false</span><span class="p">;</span>
+</pre></div>
+
+
+<h2 id="c">C++代码示例</h2>
+<div class="hlcode"><pre><span class="kt">bool</span> <span class="nf">BinaryQuery</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="o">&gt;&amp;</span> <span class="n">m_array</span><span class="p">,</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">target</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">iRight</span> <span class="o">=</span> <span class="n">m_array</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">iMid</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">iRight</span> <span class="o">&gt;=</span> <span class="n">iLeft</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">iMid</span> <span class="o">=</span> <span class="p">(</span><span class="n">iRight</span> <span class="o">+</span> <span class="n">iLeft</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">target</span> <span class="o">==</span> <span class="n">m_array</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">iMid</span><span class="p">))</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">target</span> <span class="o">&gt;</span> <span class="n">m_array</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">iMid</span><span class="p">))</span>
+            <span class="n">iLeft</span> <span class="o">=</span> <span class="n">iMid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">iRight</span> <span class="o">=</span> <span class="n">iMid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2 id="c_1">C语言代码示例</h2>
+<div class="hlcode"><pre><span class="kt">int</span> <span class="nf">BinaryQuery</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">[],</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">low</span><span class="p">,</span><span class="n">high</span><span class="p">,</span><span class="n">mid</span><span class="p">;</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">[</span><span class="n">mid</span><span class="p">])</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">[</span><span class="n">mid</span><span class="p">])</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+    </div>
+    <div id="footer">
+      <span>
+        <p>Copyright © 2020 zhang-guomin.
+        Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
+        <p>Site Generated 2020-06-21 20:40:14</p>
+      </span>
+    </div>
+
+    
+    
+  </body>
+</html>
